@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng good-fast-cheap</title>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 20px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<label class="switch">
+    <input type="checkbox" id="g" onclick="checkGood()">
+    <span class="slider round"></span>
+</label>
+<p><b>Good</b></p>
+<label class="switch">
+    <input type="checkbox" id="c" onclick="checkCheap()">
+    <span class="slider round"></span>
+</label>
+<p><b>Cheap</b></p>
+<label class="switch">
+    <input type="checkbox" id="f" onclick="checkFast()">
+    <span class="slider round"></span>
+</label>
+<p><b>Fast</b></p>
+</body>
+</html>
+<script>
+    let good = document.getElementById("g");
+    let cheap = document.getElementById("c");
+    let fast = document.getElementById("f");
+    function checkGood(){
+        if (good.checked && cheap.checked) {
+            fast.checked = false;
+        }
+    }
+    function checkCheap(){
+        if (cheap.checked&&fast.checked){
+            good.checked = false;
+        }
+    }
+    function checkFast(){
+        if (cheap.checked&&fast.checked){
+            cheap.checked = false;
+        }
+    }
+</script>
